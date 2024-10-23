@@ -13,7 +13,7 @@ public interface Operacion {
     /**
      * 
      */
-    public void Attribute1;
+
 
     /**
      * @param x 
@@ -51,11 +51,11 @@ public interface Operacion {
      * @param Parameter3 
      * @return
      */
-    public void serializar(ArbolNotable [ ] arbolnotable, void Parameter2, void Parameter3);
+    public String serializar(ArbolNotable [ ] arbolnotable, String Parameter2, String Parameter3);
 
     /**
      * 
      */
-    public void deserializar();
+    public ArbolNotable[] deserializar();
 
 }

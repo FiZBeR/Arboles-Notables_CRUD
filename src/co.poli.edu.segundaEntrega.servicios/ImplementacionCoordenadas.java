@@ -1,18 +1,21 @@
 package co.poli.edu.segundaEntrega.servicios;
 
 import co.poli.edu.segundaEntrega.modelo.ArbolNotable;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class ImplementacionCoordenadas implements Operacion {
-    /**
-     * Default constructor
-     */
-    public Implementacion Operacion() {
+    private ArbolNotable[] arbolNotable;
+    public void OperacionImplementacion() {
+        arbolNotable = new ArbolNotable[1];
     }
 
-    /**
-     *
-     */
-    private ArbolNotable[ ] arbolNotable;
+    public void setEArbolNotable(ArbolNotable[] arbolNotable) {
+        this.arbolNotable = arbolNotable;
+    }
 
     /**
      * @param x
@@ -20,7 +23,18 @@ public class ImplementacionCoordenadas implements Operacion {
      */
     public String create(ArbolNotable x) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.create() here
-        return "";
+        for (int i = 0; i < arbolNotable.length; i++) {
+            if (arbolNotable[i] == null) {
+                arbolNotable[i] = x;
+                return "Save!";
+            }
+        }
+        ArbolNotable[] ArbolNotableaux = new ArbolNotable[arbolNotable.length * 2];
+        System.arraycopy(arbolNotable, 0, ArbolNotableaux, 0, arbolNotable.length);
+        ArbolNotableaux[arbolNotable.length] = x;
+        arbolNotable = ArbolNotableaux;
+        return "Save!!";
+
     }
 
     /**
@@ -29,15 +43,21 @@ public class ImplementacionCoordenadas implements Operacion {
      */
     public ArbolNotable read(String id) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.read() here
+        for (int i = 0; i < arbolNotable.length; i++) {
+            if (!(arbolNotable[i] == null))
+                if (arbolNotable[i].getId().equals(id))
+                    return arbolNotable[i];
+        }
         return null;
     }
 
     /**
      * @return
      */
-    public ArbolNotable [ ] readall() {
+    public ArbolNotable [] readall() {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.readall() here
-        return null;
+
+        return arbolNotable;
     }
 
     /**
@@ -47,7 +67,14 @@ public class ImplementacionCoordenadas implements Operacion {
      */
     public String update(String id, ArbolNotable x) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.update() here
-        return "";
+        for (int i = 0; i < arbolNotable.length; i++) {
+            if (!(arbolNotable[i] == null))
+                if (arbolNotable[i].getId().equals(id)) {
+                    arbolNotable[i] = x;
+                    return "Update!";
+                }
+        }
+        return "Cod is not in the array!";
     }
 
     /**
@@ -56,25 +83,60 @@ public class ImplementacionCoordenadas implements Operacion {
      */
     public ArbolNotable delete(String id) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.delete() here
-        return null;
+        ArbolNotable temp = null;
+        for (int i = 0; i < arbolNotable.length; i++) {
+            if (!(arbolNotable[i] == null))
+                if (arbolNotable[i].getId().equals(id)) {
+                    temp = arbolNotable[i];
+                    arbolNotable[i] = null;
+                    return temp;
+                }
+        }
+        return temp;
     }
 
     /**
      * @param arbolnotable
-     * @param Parameter2
-     * @param Parameter3
+     * @param path
+     * @param name
      * @return
      */
-    public void serializar(ArbolNotable [ ] arbolnotable, void Parameter2, void Parameter3) {
+    public String serializar(ArbolNotable [] arbolnotable, String path, String name) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.serializar() here
-        return null;
+        try {
+            FileOutputStream fos = new FileOutputStream(path + name);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(arbolnotable);
+            oos.close();
+            fos.close();
+            return "File create!!";
+        } catch (IOException ioe) {
+            return "Error file " + ioe.getMessage();
+        }
+    }
+
+
+    public ArbolNotable[] deserializar(String path, String name) {
+        // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.deserializar() here
+        ArbolNotable[] a = null;
+        try {
+            FileInputStream fis = new FileInputStream(path + name);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            a = (ArbolNotable[]) ois.readObject();
+
+            ois.close();
+            fis.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            c.printStackTrace();
+        }
+        return a;
     }
 
     /**
-     *
+     * @return
      */
-    public void deserializar() {
-        // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.deserializar() here
-    }
 
 }
