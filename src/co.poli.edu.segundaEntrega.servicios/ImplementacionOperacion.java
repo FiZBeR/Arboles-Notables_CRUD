@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class ImplementacionCoordenadas implements Operacion {
+public class ImplementacionOperacion implements Operacion {
     private ArbolNotable[] arbolNotable;
     public void OperacionImplementacion() {
         arbolNotable = new ArbolNotable[1];

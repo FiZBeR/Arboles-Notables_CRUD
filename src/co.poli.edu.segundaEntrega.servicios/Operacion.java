@@ -11,18 +11,13 @@ import java.util.*;
 public interface Operacion {
 
     /**
-     * 
-     */
-
-
-    /**
-     * @param x 
+     * @param x
      * @return
      */
     public String create(ArbolNotable x);
 
     /**
-     * @param id 
+     * @param id
      * @return
      */
     public ArbolNotable read(String id);
@@ -33,29 +28,31 @@ public interface Operacion {
     public ArbolNotable [ ] readall();
 
     /**
-     * @param id 
-     * @param x 
+     * @param id
+     * @param x
      * @return
      */
     public String update(String id, ArbolNotable x);
 
     /**
-     * @param id 
+     * @param id
      * @return
      */
     public ArbolNotable delete(String id);
 
     /**
-     * @param arbolnotable 
-     * @param Parameter2 
-     * @param Parameter3 
+     * @param arbolnotable
+     * @param Parameter2
+     * @param Parameter3
      * @return
      */
     public String serializar(ArbolNotable [ ] arbolnotable, String Parameter2, String Parameter3);
 
     /**
-     * 
+     * @param path
+     * @param name
+     * @return
      */
-    public ArbolNotable[] deserializar();
+    public ArbolNotable [ ] deserializar(String path, String name);
 
 }
