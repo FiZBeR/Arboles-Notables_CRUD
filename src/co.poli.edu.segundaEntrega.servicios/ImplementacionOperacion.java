@@ -7,14 +7,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+
 public class ImplementacionOperacion implements Operacion {
-    private ArbolNotable[] arbolNotable;
-    public void OperacionImplementacion() {
-        arbolNotable = new ArbolNotable[1];
+
+    private ArbolNotable[] ArbolNotable;
+
+    public ImplementacionOperacion() {
+        ArbolNotable = new ArbolNotable[1];
     }
 
-    public void setEArbolNotable(ArbolNotable[] arbolNotable) {
-        this.arbolNotable = arbolNotable;
+    public void setEArbolNotable(ArbolNotable[] ArbolNotable) {
+        this.ArbolNotable = ArbolNotable;
     }
 
     /**
@@ -23,16 +26,16 @@ public class ImplementacionOperacion implements Operacion {
      */
     public String create(ArbolNotable x) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.create() here
-        for (int i = 0; i < arbolNotable.length; i++) {
-            if (arbolNotable[i] == null) {
-                arbolNotable[i] = x;
+        for (int i = 0; i < ArbolNotable.length; i++) {
+            if (ArbolNotable[i] == null) {
+                ArbolNotable[i] = x;
                 return "Save!";
             }
         }
-        ArbolNotable[] ArbolNotableaux = new ArbolNotable[arbolNotable.length * 2];
-        System.arraycopy(arbolNotable, 0, ArbolNotableaux, 0, arbolNotable.length);
-        ArbolNotableaux[arbolNotable.length] = x;
-        arbolNotable = ArbolNotableaux;
+        ArbolNotable[] ArbolNotableaux = new ArbolNotable[ArbolNotable.length * 2];
+        System.arraycopy(ArbolNotable, 0, ArbolNotableaux, 0, ArbolNotable.length);
+        ArbolNotableaux[ArbolNotable.length] = x;
+        ArbolNotable = ArbolNotableaux;
         return "Save!!";
 
     }
@@ -43,10 +46,10 @@ public class ImplementacionOperacion implements Operacion {
      */
     public ArbolNotable read(String id) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.read() here
-        for (int i = 0; i < arbolNotable.length; i++) {
-            if (!(arbolNotable[i] == null))
-                if (arbolNotable[i].getId().equals(id))
-                    return arbolNotable[i];
+        for (int i = 0; i < ArbolNotable.length; i++) {
+            if (!(ArbolNotable[i] == null))
+                if (ArbolNotable[i].getId().equals(id))
+                    return ArbolNotable[i];
         }
         return null;
     }
@@ -57,7 +60,7 @@ public class ImplementacionOperacion implements Operacion {
     public ArbolNotable [] readall() {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.readall() here
 
-        return arbolNotable;
+        return ArbolNotable;
     }
 
     /**
@@ -67,10 +70,10 @@ public class ImplementacionOperacion implements Operacion {
      */
     public String update(String id, ArbolNotable x) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.update() here
-        for (int i = 0; i < arbolNotable.length; i++) {
-            if (!(arbolNotable[i] == null))
-                if (arbolNotable[i].getId().equals(id)) {
-                    arbolNotable[i] = x;
+        for (int i = 0; i < ArbolNotable.length; i++) {
+            if (!(ArbolNotable[i] == null))
+                if (ArbolNotable[i].getId().equals(id)) {
+                    ArbolNotable[i] = x;
                     return "Update!";
                 }
         }
@@ -84,11 +87,11 @@ public class ImplementacionOperacion implements Operacion {
     public ArbolNotable delete(String id) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.delete() here
         ArbolNotable temp = null;
-        for (int i = 0; i < arbolNotable.length; i++) {
-            if (!(arbolNotable[i] == null))
-                if (arbolNotable[i].getId().equals(id)) {
-                    temp = arbolNotable[i];
-                    arbolNotable[i] = null;
+        for (int i = 0; i < ArbolNotable.length; i++) {
+            if (!(ArbolNotable[i] == null))
+                if (ArbolNotable[i].getId().equals(id)) {
+                    temp = ArbolNotable[i];
+                    ArbolNotable[i] = null;
                     return temp;
                 }
         }
@@ -96,17 +99,17 @@ public class ImplementacionOperacion implements Operacion {
     }
 
     /**
-     * @param arbolnotable
+     * @param ArbolNotable
      * @param path
      * @param name
      * @return
      */
-    public String serializar(ArbolNotable [] arbolnotable, String path, String name) {
+    public String serializar(ArbolNotable [] ArbolNotable, String path, String name) {
         // TODO implement co.poli.edu.segundaEntrega.servicios.Operacion.serializar() here
         try {
             FileOutputStream fos = new FileOutputStream(path + name);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(arbolnotable);
+            oos.writeObject(ArbolNotable);
             oos.close();
             fos.close();
             return "File create!!";

@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * 
  */
-public abstract class Especie {
+public abstract class Especie implements Serializable {
 
 
     /**

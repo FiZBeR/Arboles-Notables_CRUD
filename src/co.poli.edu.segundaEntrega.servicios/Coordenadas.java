@@ -11,31 +11,31 @@ public class Coordenadas {
     /**
      * 
      */
-    private float latitud;
+    private double latitud;
 
     /**
      * 
      */
-    private float longitud;
+    private double longitud;
 
-    public Coordenadas(float latitud, float longitud) {
+    public Coordenadas(double latitud, double longitud) {
         this.latitud = latitud;
         this.longitud = longitud;
     }
 
-    public float getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(float latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
-    public float getLongitud() {
+    public double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(float longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 
