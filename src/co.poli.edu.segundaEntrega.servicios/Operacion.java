@@ -6,53 +6,68 @@ import java.io.*;
 import java.util.*;
 
 /**
- * 
+ * Interfaz que define las operaciones básicas para la gestión de objetos ArbolNotable.
+ * Esta interfaz incluye métodos para crear, leer, actualizar, eliminar, serializar y deserializar
+ * objetos ArbolNotable.
  */
 public interface Operacion {
 
     /**
-     * @param x
-     * @return
+     * Crea un nuevo objeto ArbolNotable.
+     *
+     * @param x Objeto ArbolNotable a crear.
+     * @return Mensaje que indica el resultado de la operación.
      */
     public String create(ArbolNotable x);
 
     /**
-     * @param id
-     * @return
+     * Lee un objeto ArbolNotable por su ID.
+     *
+     * @param id ID del objeto ArbolNotable a leer.
+     * @return Objeto ArbolNotable encontrado o null si no existe.
      */
     public ArbolNotable read(String id);
 
     /**
-     * @return
+     * Lee todos los objetos ArbolNotable.
+     *
+     * @return Array de todos los objetos ArbolNotable.
      */
-    public ArbolNotable [ ] readall();
+    public ArbolNotable[] readall();
 
     /**
-     * @param id
-     * @param x
-     * @return
+     * Actualiza un objeto ArbolNotable por su ID.
+     *
+     * @param id ID del objeto ArbolNotable a actualizar.
+     * @param x Objeto ArbolNotable con los nuevos datos.
+     * @return Mensaje que indica el resultado de la operación.
      */
     public String update(String id, ArbolNotable x);
 
     /**
-     * @param id
-     * @return
+     * Elimina un objeto ArbolNotable por su ID.
+     *
+     * @param id ID del objeto ArbolNotable a eliminar.
+     * @return Objeto ArbolNotable eliminado o null si no existe.
      */
     public ArbolNotable delete(String id);
 
     /**
-     * @param arbolnotable
-     * @param Parameter2
-     * @param Parameter3
-     * @return
+     * Serializa un array de objetos ArbolNotable a un archivo.
+     *
+     * @param arbolnotable Array de objetos ArbolNotable a serializar.
+     * @param Parameter2 Ruta del archivo donde se guardará la serialización.
+     * @param Parameter3 Nombre del archivo a crear.
+     * @return Mensaje que indica el resultado de la operación.
      */
-    public String serializar(ArbolNotable [ ] arbolnotable, String Parameter2, String Parameter3);
+    public String serializar(ArbolNotable[] arbolnotable, String Parameter2, String Parameter3);
 
     /**
-     * @param path
-     * @param name
-     * @return
+     * Deserializa un array de objetos ArbolNotable desde un archivo.
+     *
+     * @param path Ruta del archivo desde donde se deserializará.
+     * @param name Nombre del archivo a deserializar.
+     * @return Array de objetos ArbolNotable deserializados.
      */
-    public ArbolNotable [ ] deserializar(String path, String name);
-
+    public ArbolNotable[] deserializar(String path, String name);
 }
